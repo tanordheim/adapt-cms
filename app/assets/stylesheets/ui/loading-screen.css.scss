@@ -1,0 +1,20 @@
+#loading-screen {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background: #fff;
+
+  p {
+    margin-top: 250px;
+    text-align: center;
+  }
+
+  progress {
+    display: block;
+    width: 200px;
+    margin: 10px auto 0 auto;
+  }
+}

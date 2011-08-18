@@ -1,0 +1,5 @@
+Adapt Management API Documentation
+====================================
+
+This is the documentation for the RESTful management APIs exposed by the Adapt
+Content Management System.

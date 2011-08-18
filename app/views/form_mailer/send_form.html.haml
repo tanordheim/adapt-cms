@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %meta{:'http-equiv' => 'Content-Type', :content => 'text/html; charset=UTF-8'}
+  %body
+
+    - cell_css_styles = 'border-bottom: 1px solid #eee; padding: 8px; font-family: Arial, Helvetica, sans-serif; font-size: 12px;'
+
+    %table
+      %tbody{:width => '100%', :cellspacing => 0, :cellpadding => 0}
+        - @fields.each do |field|
+          %tr
+            %td{:nowrap => 'nowrap', :style => cell_css_styles + 'background-color: #f7f7f7; color: #666;'}= field[:name]
+            %td{:width => '100%', :style => cell_css_styles}= field[:values].to_sentence

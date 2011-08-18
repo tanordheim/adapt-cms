@@ -1,0 +1,22 @@
+<section id="content-with-sidebar">
+  <header>
+    <h1>{{filename}}</h1>
+  </header>
+
+  {{#if image}}
+    <div id="resource-preview">
+      <img src="{{url}}" alt="" />
+    </div>
+  {{else}}
+    This file cannot be previewed.<br />
+    <a href="{{url}}">Download file</a>
+  {{/if}}
+</section>
+
+<aside id="content-sidebar">
+  <ul id="content-actions">
+    <li id="design-resource-uploader">
+      <div/>
+    </li>
+  </ul>
+</aside>

@@ -1,0 +1,52 @@
+@mixin max-width-column {
+  width: 100%;
+}
+@mixin min-width-column {
+  width: 1px;
+  white-space: nowrap;
+}
+@mixin right-column {
+  text-align: right;
+}
+
+table {
+  width: 100%;
+
+  thead {
+    tr {
+      th {
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        text-align: left;
+        font-weight: bold;
+        vertical-align: center;
+        padding: 10px;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+
+        &:first-child {
+          border-left: 1px solid #ddd;
+        }
+      }
+    }
+  }
+
+  &.blog-posts {
+    .title { @include max-width-column; }
+    .published-on { @include min-width-column; @include right-column; }
+  }
+
+  &.view-templates, &.include-templates, &.javascripts, &.stylesheets {
+    .filename { @include max-width-column; }
+    .size { @include min-width-column; @include right-column; }
+    .created-at { @include min-width-column; @include right-column; }
+  }
+}

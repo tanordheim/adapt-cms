@@ -1,0 +1,104 @@
+!!! 5
+%html
+  %head
+    %meta{:'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %title Adapt Content Management System
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+    = csrf_meta_tag
+
+    -# DASHBOARD TEMPLATES
+    = render_handlebars_template 'dashboard/navigator'
+    = render_handlebars_template 'dashboard/overview'
+
+    -# CONTENT TEMPLATES
+    = render_handlebars_template 'nodes/type-selector', 'nodes/type_selector'
+    = render_handlebars_template 'pages/form'
+    = render_handlebars_template 'blogs/form'
+    = render_handlebars_template 'blogs/show'
+    = render_handlebars_template 'blog_posts/form'
+    = render_handlebars_template 'links/form'
+
+    -# RESOURCES TEMPLATES
+    = render_handlebars_template 'resources/navigator'
+    = render_handlebars_template 'resources/overview'
+    = render_handlebars_template 'resources/browse_dialog'
+    = render_handlebars_template 'resources/show_dialog'
+    = render_handlebars_template 'resources/edit'
+
+    -# DESIGNS TEMPLATES
+    = render_handlebars_template 'designs/overview'
+    = render_handlebars_template 'designs/form'
+    = render_handlebars_template 'view_templates/overview'
+    = render_handlebars_template 'view_templates/form'
+    = render_handlebars_template 'include_templates/overview'
+    = render_handlebars_template 'include_templates/form'
+    = render_handlebars_template 'design_resources/overview'
+    = render_handlebars_template 'design_resources/edit'
+    = render_handlebars_template 'javascripts/overview'
+    = render_handlebars_template 'javascripts/form'
+    = render_handlebars_template 'stylesheets/overview'
+    = render_handlebars_template 'stylesheets/form'
+
+    -# ADMINS TEMPLATES
+    = render_handlebars_template 'admins/change-password', 'admins/change_password'
+  %body
+
+    #browser-not-compatible
+      %p
+        Your browser is not compatible with this application. Please install a recent version of
+        = link_to 'Mozilla Firefox', 'http://www.mozilla.org/en-US/firefox/'
+        or
+        = link_to 'Google Chrome', 'http://www.google.com/chrome'
+        for the optimal user experience with this site.
+
+    #loading-screen
+      %p The application is loading, please wait...
+      %progress{:value => 0, :max => 100}
+
+    %article#notice
+
+    %section#dialog-ui
+      %section#dialog
+        %header
+          %h2
+          %a Close
+        %article
+
+    %header#app-header
+      %nav#primary-nav
+        %ul
+          %li#dashboard-nav
+            %a Dashboard
+          %li#content-nav
+            %a Content
+          %li#resources-nav
+            %a Resources
+          %li#designs-nav
+            %a Designs
+
+      %nav#site-nav
+        %ul
+          %li#current-user= current_admin.email
+          %li#change-password
+            %a Change password
+          %li#log-out-nav= link_to 'Log out', destroy_admin_session_path, :method => :delete
+          %li#visit-site-nav
+            = link_to "http://#{current_site.default_host}/" do
+              = current_site.name
+              %span &rarr;
+
+    %nav#breadcrumb
+      %ul
+      %span#synchronize-status
+        Synchronizing...
+
+    %section#app-canvas
+      %section#navigator-sidebar
+        %nav#navigator
+        %nav#navigator-actions
+
+      %article#primary-content
+        -# TEST
+
+    = render :partial => '/layouts/application/preload'

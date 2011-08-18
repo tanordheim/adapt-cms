@@ -1,0 +1,65 @@
+CACHE BUSTING:
+==============
+
+The system has several types of static assets that, due to system design and
+requirements, are stored in the database instead of on the file system. This
+includes a pretty agressive overhead when delivering these assets that must be
+eliminated.
+
+The production environment has a Varnish server in front of the application
+servers that will honor any cache-information returned with a response. All
+static assets must be served with the following headers:
+
+Cache-Control: public, max-age=31556926
+Expires: <updated_at + 1 year>
+
+This will tell Varnish to cache these assets more or less forever (one year) and
+ease the burden of the application server.
+
+This will introduce the problem of stale cache after updating the asset content.
+This must be fixed by introducing cache busting to the URLs used to serve these
+static assets.
+
+Take for example a stylesheet with the following URL:
+> /c/1/screen.css
+
+To introduce cache busting here, we will introduce a new path fragment for this
+stylesheet:
+> /c/1-<updated_at.to_i>/screen.css
+
+This will keep the last updated at-timestamp in the URL at all times.
+
+GENERATING PATHS:
+=================
+
+This timestamp has to come from somewhere, and if we need to go to the database
+to find it then the whole procedure is more or less pointless. There are two
+options;
+
+- Solr (querying for "stylesheet_filename:screen.css AND design_id:1")
+- Memcached (querying for "stylesheet_1_screen.css")
+
+The Solr data are kept fresh automatically thanks to Sunspot, but it is slower
+than Memcached and a very complex key/value-store, which is what we really need.
+
+Memcached should be used to keep the neccesary data in place, and the logic
+should be kept simple.
+
+The process of finding and delivering a stylesheet will be as follows:
+ 1) Stylesheet filter gets a request for 'screen'.
+ 2) Retrieving stylesheet information.
+    -> Checking memcached.
+    -> Loading from database, then storing to memcached.
+ 3) Rendering path to the stylesheet: /c/1-<updated_at.to_i>/screen.css
+ 4) Page loads in the users browser and a request is dispatched to the stylesheet.
+ 5) Controller loads the stylesheet from the database, ignoring the timestamp.
+ 6) Controller processes the stylesheets and returns it to the user, with the
+    appropriate cache headers.
+ 7) Varnish will cache the stylesheet and never query the appserver for it again,
+    short-circuting the delivery chain after step 4.
+
+An implementation could be as follows:
+> stylesheet = Rails.cache.find "stylesheet_#{design_id}_#{filename}" do
+>   Stylesheet.where(:design_id => design_id).find_by_filename(filename)
+> end
+> return "/c/#{design_id}-#{stylesheet.updated_at.to_i}/#{filename}.css"

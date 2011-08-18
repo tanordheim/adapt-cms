@@ -1,0 +1,152 @@
+@import 'compass/css3/border-radius';
+
+// Import file type sprite
+// @import 'file-type/*.png'; /**/
+
+@mixin file-type-icon($type) {
+  &.#{$type}-resource {
+    background-image: url(asset_path("file-type/#{$type}.png", 'image'));
+    // @include file-type-sprite($type);
+  }
+}
+
+#resources {
+  li {
+    background-image: url(asset_path('file-type/unknown.png', 'image'));
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+    height: 32px;
+    width: 185px;
+    min-width: 175px;
+    margin: 0 10px 10px 0;
+    padding: 5px;
+    float: left;
+    @include border-radius(2px);
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    cursor: pointer;
+
+    @include file-type-icon('ace');
+    @include file-type-icon('ai');
+    @include file-type-icon('aif');
+    @include file-type-icon('aiff');
+    @include file-type-icon('amr');
+    @include file-type-icon('asf');
+    @include file-type-icon('asx');
+    @include file-type-icon('bat');
+    @include file-type-icon('bin');
+    @include file-type-icon('bmp');
+    @include file-type-icon('bup');
+    @include file-type-icon('cab');
+    @include file-type-icon('cbr');
+    @include file-type-icon('cda');
+    @include file-type-icon('cdl');
+    @include file-type-icon('cdr');
+    @include file-type-icon('chm');
+    @include file-type-icon('dat');
+    @include file-type-icon('divx');
+    @include file-type-icon('dll');
+    @include file-type-icon('dmg');
+    @include file-type-icon('doc');
+    @include file-type-icon('dss');
+    @include file-type-icon('dvf');
+    @include file-type-icon('dwg');
+    @include file-type-icon('eml');
+    @include file-type-icon('eps');
+    @include file-type-icon('exe');
+    @include file-type-icon('fla');
+    @include file-type-icon('flv');
+    @include file-type-icon('gif');
+    @include file-type-icon('gz');
+    @include file-type-icon('hqx');
+    @include file-type-icon('htm');
+    @include file-type-icon('html');
+    @include file-type-icon('ifo');
+    @include file-type-icon('indd');
+    @include file-type-icon('iso');
+    @include file-type-icon('jar');
+    @include file-type-icon('jpeg');
+    @include file-type-icon('jpg');
+    @include file-type-icon('lnk');
+    @include file-type-icon('log');
+    @include file-type-icon('m4a');
+    @include file-type-icon('m4b');
+    @include file-type-icon('m4p');
+    @include file-type-icon('m4v');
+    @include file-type-icon('mcd');
+    @include file-type-icon('mdb');
+    @include file-type-icon('mid');
+    @include file-type-icon('mov');
+    @include file-type-icon('mp2');
+    @include file-type-icon('mp4');
+    @include file-type-icon('mpeg');
+    @include file-type-icon('mpg');
+    @include file-type-icon('msi');
+    @include file-type-icon('mswmm');
+    @include file-type-icon('ogg');
+    @include file-type-icon('pdf');
+    @include file-type-icon('png');
+    @include file-type-icon('pps');
+    @include file-type-icon('ps');
+    @include file-type-icon('psd');
+    @include file-type-icon('pst');
+    @include file-type-icon('ptb');
+    @include file-type-icon('pub');
+    @include file-type-icon('qbb');
+    @include file-type-icon('qbw');
+    @include file-type-icon('qxd');
+    @include file-type-icon('ram');
+    @include file-type-icon('rar');
+    @include file-type-icon('rm');
+    @include file-type-icon('rmvb');
+    @include file-type-icon('rtf');
+    @include file-type-icon('sea');
+    @include file-type-icon('ses');
+    @include file-type-icon('sit');
+    @include file-type-icon('sitx');
+    @include file-type-icon('ss');
+    @include file-type-icon('swf');
+    @include file-type-icon('tgz');
+    @include file-type-icon('thm');
+    @include file-type-icon('tif');
+    @include file-type-icon('tmp');
+    @include file-type-icon('torrent');
+    @include file-type-icon('ttf');
+    @include file-type-icon('txt');
+    @include file-type-icon('vcd');
+    @include file-type-icon('vob');
+    @include file-type-icon('wav');
+    @include file-type-icon('wma');
+    @include file-type-icon('wmv');
+    @include file-type-icon('wps');
+    @include file-type-icon('xls');
+    @include file-type-icon('xpi');
+    @include file-type-icon('zip');
+
+    &:hover {
+      background-color: #f5f5f5;
+      border-color: #ddd;
+
+      .filename {
+        text-decoration: underline;
+      }
+    }
+
+    span {
+      display: block;
+      margin-left: 35px;
+
+      &.filename {
+        display: block;
+        padding: 3px 0 3px 0;
+        color: #2f74ab;
+      }
+
+      &.size {
+        display: block;
+        font-size: 0.8em;
+      }
+    }
+  }
+}

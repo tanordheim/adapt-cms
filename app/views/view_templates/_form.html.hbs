@@ -1,0 +1,25 @@
+<form>
+  <section id="content-with-sidebar">
+    <header class="editable-header">
+      <input type="text" name="filename" id="view_template_filename" value="{{filename}}" class="editable-header-field" />
+    </header>
+
+    <ol>
+      <li class="text-field">
+        <label for="view_template_markup">Markup</label>
+        <div class="editor" id="view_template_markup">{{markup}}</div>
+      </li>
+    </ol>
+  </section>
+
+  <aside id="content-sidebar">
+    <header>
+      <h2>Actions</h2>
+    </header>
+    <ol class="buttons">
+      <li>
+        <button type="submit">Save view template</button>
+      </li>
+    </ol>
+  </aside>
+</form>

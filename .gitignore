@@ -1,0 +1,11 @@
+.bundle
+db/*.sqlite3
+log/*.log
+log/*.lck
+tmp/
+.sass-cache/
+.DS_Store
+public/resources
+public/design_resources
+public/uploads
+solr/data

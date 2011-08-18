@@ -1,0 +1,149 @@
+@import 'compass/css3/images';
+@import 'compass/css3/border-radius';
+@import 'compass/css3/box-shadow';
+@import 'compass/css3/text-shadow';
+
+form {
+
+  input[type='text'], input[type='password'] {
+    color: #666;
+    font-size: 1em;
+    padding: 5px;
+  }
+
+  textarea {
+    color: #666;
+    font-size: 1em;
+    padding: 5px;
+    font-family: 'Droid Sans Mono', Menlo, 'Courier New', 'Courier', 'Mono', monospace;
+  }
+
+  button {
+    @include background-image(linear-gradient(center top, #fff, #e1e1e1));
+    border-color: #ebebeb;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    @include border-radius(4px);
+    @include box-shadow(rgba(0, 0, 0, 0.3) 0 1px 4px);
+    @include text-shadow(#fff 1px 1px 0);
+    color: #333;
+    font-weight: bold;
+    font-size: 0.9em;
+    line-height: 25px;
+    cursor: pointer;
+    position: relative;
+
+    &:active { top: 1px; }
+
+    &[type='submit']:not(.plain-button) {
+      @include background-image(linear-gradient(center bottom, #327e97, #5280bf));
+      border-color: #285e83;
+      @include text-shadow(rgba(0, 0, 0, 0.4) -1px -1px 0);
+      color: #fff;
+    }
+  }
+
+  header.editable-header {
+    input[type='text'] {
+      width: 98%;
+      font-size: 14px;
+    }
+  }
+
+  ol {
+    >li {
+      margin-bottom: 15px;
+
+      &:last-child { margin-bottom: 0; }
+
+      label {
+        display: block;
+        font-weight: bold;
+        color: #333;
+      }
+
+      &.slug-field {
+        label {
+          display: inline-block;
+        }
+
+        .slug-parent {
+          padding-left: 10px;
+        }
+
+        input[type='text'] {
+          width: 200px;
+        }
+      }
+
+      &.check-box-field {
+        label {
+          display: inline-block;
+          font-weight: normal;
+        }
+
+        input[type='checkbox'] {
+          display: inline-block;
+        }
+      }
+
+      &.radio-field {
+        div {
+          label {
+            display: inline-block;
+            font-weight: normal;
+          }
+
+          input[type='radio'] {
+            display: inline-block;
+          }
+        }
+      }
+
+      &.text-field {
+        textarea {
+          width: 100%;
+          height: 250px;
+        }
+
+        .ace_editor {
+          position: relative;
+          width: 100%;
+          height: 500px;
+          border: 1px solid #ddd;
+        }
+      }
+
+      &.resource-reference-field {
+
+        .current-value {
+          padding-right: 15px;
+        }
+
+        // Don't show remove link by default
+        .remove { display: none; }
+        .browse { margin-right: 10px; }
+
+        &.has-resource {
+          .remove { display: inline; }
+        }
+
+      }
+    }
+
+    &#variant-fields {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #efefef;
+    }
+
+    &.buttons {
+      margin-top: 15px;
+    }
+  }
+
+  // Don't use as much spacing between fields in the content sidebar
+  #content-sidebar li {
+    margin-bottom: 5px;
+  }
+}

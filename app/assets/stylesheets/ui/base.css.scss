@@ -1,0 +1,22 @@
+@import 'compass/reset';
+
+body {
+  background: #fff;
+  font-size: 80%;
+  color: #666;
+  font-family: 'CartoGothic Std', 'Verdana', 'Lucida Grande', 'Gill Sans', 'Arial', 'Helvetica', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #2f74ab;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+p {
+  margin-bottom: 10px;
+}

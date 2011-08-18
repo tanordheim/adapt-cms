@@ -1,0 +1,38 @@
+<form>
+  <section id="content-with-sidebar">
+    <header class="editable-header">
+      <input type="text" name="filename" id="stylesheet_filename" value="{{filename}}" class="editable-header-field" />
+    </header>
+
+    <ol>
+      <li class="text-field">
+        <label for="stylesheet_data">Data</label>
+        <div class="editor" id="stylesheet_data">{{data}}</div>
+      </li>
+    </ol>
+  </section>
+
+  <aside id="content-sidebar">
+    <header>
+      <h2>Processor</h2>
+    </header>
+    <ol>
+      <li class="select-field">
+        <select name="processor" id="stylesheet_processor">
+          <option value="plain">Plain CSS</option>
+          <option value="scss">SCSS</option>
+          <option value="sass">SASS</option>
+        </select>
+      </li>
+    </ol>
+
+    <header>
+      <h2>Actions</h2>
+    </header>
+    <ol class="buttons">
+      <li>
+        <button type="submit">Save stylesheet</button>
+      </li>
+    </ol>
+  </aside>
+</form>

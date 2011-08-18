@@ -1,0 +1,109 @@
+@import 'compass/css3/box-shadow';
+@import 'compass/css3/images';
+@import 'compass/css3/text-shadow';
+@import 'compass/css3/border-radius';
+
+#app-header {
+  background: #99b3cc;
+  height: 40px;
+  @include box-shadow(rgba(0, 0, 0, 0.2) 0 -1px 2px inset);
+
+  ul {
+    li {
+      display: block;
+      float: left;
+    }
+  }
+
+  #primary-nav {
+    float: left;
+    margin-left: 15px;
+
+    ul {
+
+      li {
+        margin-top: 9px;
+
+        a {
+          display: block;
+          cursor: pointer;
+          line-height: 30px;
+          padding: 0 12px;
+          @include background-image(linear-gradient(center bottom, #285e83, #327e97 6%, #5280bf));
+          border-top: 1px solid #335e93;
+          border-right: 1px solid #335e93;
+          border-left: 1px solid #335e93;
+          color: #fff;
+          @include text-shadow(rgba(0, 0, 0, 1) 0px 1px 1px);
+          font-weight: bold;
+          position: relative;
+          z-index: 1;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+
+        &:first-child a {
+          @include border-top-left-radius(2px);
+        }
+
+        &:last-child a {
+          @include border-top-right-radius(2px);
+        }
+
+        // Move all tabs one pixel to the left to prevent double border
+        &:nth-child(1) a { left: 0px; }
+        &:nth-child(2) a { left: -1px; }
+        &:nth-child(3) a { left: -2px; }
+        &:nth-child(4) a { left: -3px; }
+        &:nth-child(5) a { left: -4px; }
+        &:nth-child(6) a { left: -5px; }
+        &:nth-child(7) a { left: -6px; }
+        &:nth-child(8) a { left: -7px; }
+        &:nth-child(9) a { left: -8px; }
+        &:nth-child(10) a { left: -9px; }
+      }
+    }
+  }
+
+  #site-nav {
+    float: right;
+    margin-right: 15px;
+
+    ul {
+      li {
+        line-height: 40px;
+        margin-right: 10px;
+
+        &:last-child { margin-right: 0; }
+
+        a {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// Active states for each navigation tab
+@mixin highlighted-navigation-state($id) {
+  body##{$id}-view #app-header #primary-nav ul li##{$id}-nav {
+    margin-top: 5px;
+
+    a {
+      z-index: 2;
+      @include background-image(linear-gradient(center bottom, #fff, #ede9e8));
+      color: #3b3c36;
+      @include text-shadow(rgba(0, 0, 0, 0) 0 0 0);
+      line-height: 38px;
+      @include border-top-radius(2px);
+      @include box-shadow(rgba(0, 0, 0, 0.5) 0 0 3px);
+      border-color: #ede9e8;
+    }
+  }
+}
+@include highlighted-navigation-state('dashboard');
+@include highlighted-navigation-state('content');
+@include highlighted-navigation-state('resources');
+@include highlighted-navigation-state('designs');

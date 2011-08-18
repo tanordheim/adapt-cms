@@ -1,0 +1,64 @@
+<form>
+  <section id="content-with-sidebar">
+    <header class="editable-header">
+      <input type="text" name="name" id="blog_name" value="{{name}}" class="editable-header-field" />
+    </header>
+
+    <ol>
+      <li class="slug-field">
+        <label for="blog_slug">Permalink</label>
+          {{#if parent}}
+            {{#if parent.uri}}
+              /{{parent.uri}}/
+            {{else}}
+              /
+            {{/if}}
+          {{else}}
+            /
+          {{/if}}
+        <input type="text" name="slug" id="blog_slug" value="{{slug}}" placeholder="Generated from title"/>
+      </li>
+    </ol>
+
+    <ol id="variant-fields" />
+  </section>
+
+  <aside id="content-sidebar">
+    <header>
+      <h2>Blog status</h2>
+    </header>
+    <ol>
+      <li class="check-box-field">
+        <input type="checkbox" name="published" id="blog_published" value="1" />
+        <label for="blog_published">Published</label>
+      </li>
+      <li class="check-box-field">
+        <input type="checkbox" name="show_in_navigation" id="blog_show_in_navigation" value="1" />
+        <label for="blog_show_in_navigation">Show in navigation</label>
+      </li>
+    </ol>
+
+    <header>
+      <h2>Blog type</h2>
+    </header>
+    <ol>
+      <li class="select-field">
+        <select name="variant_id" id="blog_variant">
+          <option value="">None</option>
+          {{#each variants}}
+            <option value="{{id}}">{{name}}</option>
+          {{/each}}
+        </select>
+      </li>
+    </ol>
+
+    <header>
+      <h2>Actions</h2>
+    </header>
+    <ol class="buttons">
+      <li>
+        <button type="submit">Save blog</button>
+      </li>
+    </ol>
+  </aside>
+</form>

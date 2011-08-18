@@ -1,0 +1,92 @@
+NODE CACHING:
+=============
+
+Absolute all user-administerable content of the CMS served to the end user is a
+node. This results in a very data driven system, but it also puts some
+requirements on performance as we have no content that are static and can be
+reliably cached by Varnish and similar - the content must be as live as
+possible.
+
+The request for a node, today, goes as follows:
+ 1) Request comes in for /page_uri and hits the nodes_controller.
+ 2) The current site is identified based on the request hostname, and the site
+    is loaded from the database.
+ 3) The node matching the requested uri ("page_uri") is loaded from the loaded
+    site.
+ 4) The default design for the site is identified.
+ 5) The view template matching the current node for the default design is identified.
+ 6) The node and the view gets dispatched into the NodeRenderer, which stitches
+    everything together.
+ 7) The node renderer calls to_liquid on the current site, which does a few more
+    lookups to build navigation menus and such.
+ 8) Any requests for the Liquid form filter will hit the database to load the
+    requested form, always.
+ 9) Any requests for the Liquid node or node_from_id filter will hit the
+    database to load the requested node, always.
+10) Any include templates used via the IncludeTemplateFileSystem will hit the
+    database to load the requested include template, always.
+
+NEW CACHE STRATEGY:
+===================
+
+While its ok to hit the database every now and then, especially for rarely used
+stuff like collecting the POST from a form submit, the CMS should really be able
+to serve normal page requests by only talking to Memcached, and in some special
+cases perhaps Solr.
+
+So what do we cache, and how? The two primary options are;
+ 1) Cache the data as its retrieved from the database so we stitch together a
+    view with cached models to avoid unneccesary database queries.
+ 2) Cache the output of the NodeRenderer so we can avoid both hitting the
+    database and any post-processing we might need to to.
+
+Since views have the ability to request content (primarily forms and nodes in
+this setting) as they see fit, doing output caching is difficult as the nodes
+have no information about what other nodes they are linked to - and if a view
+renders a link to another node, and that linked-to node gets its name changed,
+that won't be reflected in the view as the cache that got purged didn't affect
+the original view.
+
+Primarily for this reason, the new cache strategy should be to cache the data
+that the rendering process is based upon in Memcached and pulling it from there
+through the Rails.cache API.
+
+A request for a node with the new cache strategy might be something like this:
+ 1) Request comes in for /page_uri and hits the nodes_controller.
+ 2) The hostname is pulled from the request and the site is attempted loaded via
+    Rails.cache.fetch "site:#{hostname}". Whenever a site model is persisted, it
+    must invalidate the cache on all its hostnames to avoid stale data.
+ 3) The node is loaded via Rails.cache.fetch "node:#{site_id}:#{uri}".
+    Whenever this node is persisted, this cache key must be invalidated.
+ 4) The default design is pulled via Rails.cache.fetch "site_design:#{site_id}".
+    This also contains a list of all view and include templates for the design.
+    Whenever the design itself or any view template is created/updated, the
+    cache key must be invalidated. Javascripts, stylesheets and resources are
+    cached separately. 
+ 5) The view template matching the current node for the loaded design is
+    identified.
+ 6) The node and the view gets dispatched into the NodeRenderer, which stitches
+    everything together.
+ 7) The node renderer calls to_liquid on the current site. The model should
+    utilize Rails.cache to fetch any additional data it needs instead of hitting
+    the database.
+ 8) Any requests for the Liquid form filter will load the form via
+    Rails.cache.fetch "form:#{site_id}:#{form_id}". Whenever a form or its fields
+    are saved, this cache must be invalidated.
+ 9) Any requests for the Liquid node or node_from_id filter will load the node
+    through Rails.cache.fetch "node:#{site_id}:#{uri} or Rails.cache.fetch
+    "node_id:#{site_id}:#{uri}". Whenever this node is persisted, the ID based
+    cache key must be invalidated together with the uri based cache key.
+10) Any include templates used via the IncludeTemplateFileSystem will pull the
+    include template from the design object passed into the class instead of
+    going to the database.
+
+Some additional changes will be:
+
+The recent_posts array stored on liquified blog nodes must go as its pointless to fetch it whenever liquifying a node without knowing if its needed or not. Instead a new block tag should be implemented as such:
+
+<ul>
+  {% search classification:"blog_post" parent_uri:"nyhetsarkiv" order_by:"published_on desc, created_at desc" limit:10 %}
+    <li><a href="{{uri}}">{{name}}</a></li>
+  {% endsearch %}
+</ul>

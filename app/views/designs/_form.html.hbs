@@ -1,0 +1,35 @@
+<form>
+  <section id="content-with-sidebar">
+    <header class="editable-header">
+      <input type="text" name="name" id="design_name" value="{{name}}" class="editable-header-field" />
+    </header>
+
+    <ol>
+      <li class="text-field">
+        <label for="design_markup">Markup</label>
+        <div class="editor" id="design_markup">{{markup}}</div>
+      </li>
+    </ol>
+  </section>
+
+  <aside id="content-sidebar">
+    <header>
+      <h2>Design status</h2>
+    </header>
+    <ol>
+      <li class="check-box-field">
+        <input type="checkbox" name="default" id="design_default" value="1" />
+        <label for="design_default">This is the default design</label>
+      </li>
+    </ol>
+  
+    <header>
+      <h2>Actions</h2>
+    </header>
+    <ol class="buttons">
+      <li>
+        <button type="submit">Save design</button>
+      </li>
+    </ol>
+  </aside>
+</form>

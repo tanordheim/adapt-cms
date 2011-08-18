@@ -1,0 +1,12 @@
+= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  %ol.fields
+    %li.string-field
+      = f.text_field :email
+    %li.password-field
+      = f.password_field :password
+  %ol.buttons
+    %li.check-box-field
+      = f.check_box :remember_me
+      = f.label :remember_me, 'Remember me on this computer'
+    %li.submit
+      = f.submit 'Log in', :class => 'plain-button'

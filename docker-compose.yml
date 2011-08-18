@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  psql:
+    image: postgres:9
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: adapt_dev
+  solr:
+    image: kshaner/solr:3.6.2
+    volumes:
+      - "./solr/conf:/opt/apache-solr-3.6.2/example/solr/conf"
+  app:
+    build: .
+    command: bash -c "rake db:migrate && rake db:seed && rails server"
+    ports:
+      - "3000:3000"
+    depends_on: [psql, solr]
+    

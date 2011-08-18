@@ -1,0 +1,79 @@
+// CARTOGOTHIC STD: HEADER FONT AND TEXT FONT
+//
+// .afs-cartogothic-std { font-family: "CartoGothic Std", "Verdana", "Lucida Grande", "Gill Sans", "Arial", "Helvetica", sans-serif; ;}
+// .afs-cartogothic-std { font-family: "CartoGothic Std", "Verdana", "Lucida Grande", "Gill Sans", "Arial", "Helvetica", sans-serif; font-size: 1.000em;}
+
+// DROID SANS MONO: MONOSPACE FONT
+// .afs-droid-sans-mono { font-family: "Droid Sans Mono", Menlo, Courier New, Courier, Mono, monospace; font-size: 0.853em;}
+
+@font-face {
+  font-family: 'CartoGothic Std';
+  src: url(asset_path('CartoGothicStd-Bold-webfont.eot', 'fonts'));
+  src: local('☺'), url(asset_path('CartoGothicStd-Bold-webfont.woff', 'fonts')) format('woff'), url(asset_path('CartoGothicStd-Bold-webfont.ttf', 'fonts')) format('truetype'), url(asset_path('CartoGothicStd-Bold-webfont.svg#webfontX4pGz9fc', 'fonts')) format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CartoGothic Std';
+  src: url(asset_path('CartoGothicStd-BoldItalic-webfont.eot', 'fonts'));
+  src: local('☺'), url(asset_path('CartoGothicStd-BoldItalic-webfont.woff', 'fonts')) format('woff'), url(asset_path('CartoGothicStd-BoldItalic-webfont.ttf', 'fonts')) format('truetype'), url(asset_path('CartoGothicStd-BoldItalic-webfont.svg#webfontX4pGz9fc', 'fonts')) format('svg');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CartoGothic Std';
+  src: url(asset_path('CartoGothicStd-Book-webfont.eot', 'fonts'));
+  src: local('☺'), url(asset_path('CartoGothicStd-Book-webfont.woff', 'fonts')) format('woff'), url(asset_path('CartoGothicStd-Book-webfont.ttf', 'fonts')) format('truetype'), url(asset_path('CartoGothicStd-Book-webfont.svg#webfontX4pGz9fc', 'fonts')) format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CartoGothic Std';
+  src: url(asset_path('CartoGothicStd-Italic-webfont.eot', 'fonts'));
+  src: local('☺'), url(asset_path('CartoGothicStd-Italic-webfont.woff', 'fonts')) format('woff'), url(asset_path('CartoGothicStd-Italic-webfont.ttf', 'fonts')) format('truetype'), url(asset_path('CartoGothicStd-Italic-webfont.svg#webfontX4pGz9fc', 'fonts')) format('svg');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CartoGothic Std';
+  src: url(asset_path('CartoGothicStd-Bold-webfont.eot', 'fonts'));
+  src: local('☺'), url(asset_path('CartoGothicStd-Bold-webfont.woff', 'fonts')) format('woff'), url(asset_path('CartoGothicStd-Bold-webfont.ttf', 'fonts')) format('truetype'), url(asset_path('CartoGothicStd-Bold-webfont.svg#webfontX4pGz9fc', 'fonts')) format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CartoGothic Std';
+  src: url(asset_path('CartoGothicStd-BoldItalic-webfont.eot', 'fonts'));
+  src: local('☺'), url(asset_path('CartoGothicStd-BoldItalic-webfont.woff', 'fonts')) format('woff'), url(asset_path('CartoGothicStd-BoldItalic-webfont.ttf', 'fonts')) format('truetype'), url(asset_path('CartoGothicStd-BoldItalic-webfont.svg#webfontX4pGz9fc', 'fonts')) format('svg');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CartoGothic Std';
+  src: url(asset_path('CartoGothicStd-Book-webfont.eot', 'fonts'));
+  src: local('☺'), url(asset_path('CartoGothicStd-Book-webfont.woff', 'fonts')) format('woff'), url(asset_path('CartoGothicStd-Book-webfont.ttf', 'fonts')) format('truetype'), url(asset_path('CartoGothicStd-Book-webfont.svg#webfontX4pGz9fc', 'fonts')) format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CartoGothic Std';
+  src: url(asset_path('CartoGothicStd-Italic-webfont.eot', 'fonts'));
+  src: local('☺'), url(asset_path('CartoGothicStd-Italic-webfont.woff', 'fonts')) format('woff'), url(asset_path('CartoGothicStd-Italic-webfont.ttf', 'fonts')) format('truetype'), url(asset_path('CartoGothicStd-Italic-webfont.svg#webfontX4pGz9fc', 'fonts')) format('svg');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Droid Sans Mono';
+  src: url(asset_path('DroidSansMono-webfont.eot', 'fonts'));
+  src: local('☺'), url(asset_path('DroidSansMono-webfont.woff', 'fonts')) format('woff'), url(asset_path('DroidSansMono-webfont.ttf', 'fonts')) format('truetype'), url(asset_path('DroidSansMono-webfont.svg#webfontX4pGz9fc', 'fonts')) format('svg');
+  font-weight: 400;
+  font-style: normal;
+}

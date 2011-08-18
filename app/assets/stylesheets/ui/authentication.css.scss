@@ -1,0 +1,65 @@
+@import 'compass/css3/border-radius';
+@import 'compass/css3/images';
+@import 'compass/css3/box-shadow';
+@import 'compass/utilities/general/clearfix';
+
+#authentication {
+  background: #99b3cc;
+
+  #login-panel {
+    background-color: #fff;
+    @include background-image(linear-gradient(center bottom, #fff, #ede9e8));
+    width: 387px;
+    margin: 200px auto 0 auto;
+    @include border-radius(3px);
+    border: 1px solid #ede9e8;
+    @include box-shadow(rgba(0, 0, 0, 0.5) 0 0 5px);
+    padding: 10px;
+
+    ol {
+
+      li {
+        margin-bottom: 0;
+      }
+
+      &.fields {
+        height: 40px;
+
+        li {
+          float: left;
+
+          &.string-field {
+            margin-right: 5px;
+
+            input {
+              width: 175px;
+            }
+          }
+
+          &.password-field {
+            input {
+              width: 175px;
+            }
+          }
+        }
+
+      }
+
+      &.buttons {
+        height: 28px;
+        margin-top: 0;
+
+        li {
+          &.check-box-field {
+            padding-top: 6px;
+            float: left;
+          }
+
+          &.submit {
+            float: right;
+          }
+        }
+      }
+    }
+  }
+}

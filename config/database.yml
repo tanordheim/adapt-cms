@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: psql
+  database: adapt_dev
+  username: postgres
+  password: secret
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: psql
+  database: adapt_test
+  username: postgres
+  password: secret

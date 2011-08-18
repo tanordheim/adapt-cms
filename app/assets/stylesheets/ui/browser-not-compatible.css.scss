@@ -1,0 +1,15 @@
+#browser-not-compatible {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #fff;
+
+  p {
+    margin-top: 250px;
+    text-align: center;
+  }
+}

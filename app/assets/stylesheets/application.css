@@ -1,0 +1,27 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require ui/fonts
+ *= require ui/base
+ *= require ui/authentication
+ *= require ui/browser-not-compatible
+ *= require ui/loading-screen
+ *= require ui/notice
+ *= require ui/dialog
+ *= require ui/app-header
+ *= require ui/breadcrumb
+ *= require ui/app-canvas
+ *= require ui/navigator-sidebar
+ *= require ui/primary-content
+ *= require ui/forms
+ *= require ui/tables
+ *= require libs/file-uploader
+ *= require libs/markitup/skin
+ *= require libs/markitup/set
+ *= require libs/codemirror
+ *= require libs/jquery-ui
+ *= require libs/jquery-ui-overrides
+ *= require_tree . 
+*/

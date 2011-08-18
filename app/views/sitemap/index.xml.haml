@@ -1,0 +1,8 @@
+!!! XML
+<?xml version="1.0" encoding="UTF-8"?>
+%urlset{:xmlns => 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+  - nodes.each do |node|
+    %url
+      %loc== http://#{current_site.default_host}/#{node.uri}
+      %lastmod= node.updated_at.strftime('%Y-%m-%dT%H:%M:%S%z')
+      %priority 0.5
